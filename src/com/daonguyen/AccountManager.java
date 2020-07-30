@@ -49,6 +49,7 @@ public class AccountManager {
                 case 2:
                     System.out.println("\nCustomer list information is: ");
                     System.out.printf("%-10s %-20s %-20s \n", "Number", "Name", "Amount");
+
                     for (int i = 0; i < customersNumber; i++) {
                         customersArray[i].printAccount();
                     }
@@ -57,8 +58,10 @@ public class AccountManager {
                 case 3:
                     System.out.print("\nEnter the customer account number want to deposit: ");
                     transferringNumber = scanner.nextLong();
+
                     for (int i = 0; i < customersNumber; i++) {
                         currentNumber = customersArray[i].getNumber();
+
                         if (transferringNumber == currentNumber) {
                             System.out.println("You choose an account: " + currentNumber);
                             customersArray[i].deposit();
@@ -70,8 +73,10 @@ public class AccountManager {
                 case 4:
                     System.out.print("\nEnter the customer account number to withdraw: ");
                     transferringNumber = scanner.nextLong();
+
                     for (int i = 0; i < customersNumber; i++) {
                         currentNumber = customersArray[i].getNumber();
+
                         if (transferringNumber == currentNumber) {
                             System.out.println("You choose an account: " + currentNumber);
                             customersArray[i].withdrawal();
@@ -86,24 +91,29 @@ public class AccountManager {
                     transferringNumber = scanner.nextLong();
                     System.out.print("\nEnter the account number of the receiving customer: ");
                     receivingNumber = scanner.nextLong();
+
                     for (int i = 0; i < customersNumber; i++) {
                         currentNumber = customersArray[i].getNumber();
+
                         if (transferringNumber == currentNumber) {
                             sending = customersArray[i].getAmount();
+
                             for (int j = 0; j < customersNumber; j++) {
                                 afterTransferringNumber = customersArray[j].getNumber();
+
                                 if (receivingNumber == afterTransferringNumber) {
                                     receiving = customersArray[j].getAmount();
                                     System.out.print("\nEnter the amount to transfer: ");
                                     transferAmount = scanner.nextDouble();
+
                                     if (transferAmount <= sending) {
                                         sending = sending - transferAmount;
                                         receiving = receiving + transferAmount;
                                         customersArray[i].setAmount(sending);
                                         customersArray[j].setAmount(receiving);
+
                                         System.out.println("Account number " + currentNumber + " have just transferred: $" + transferAmount);
                                         System.out.println("Current amount of transferring customer after transferring is: " + (customersArray[i].getAmount() - transferAmount));
-
                                         System.out.println("Account number " + afterTransferringNumber + " have just received: $" + transferAmount);
                                         System.out.println("Current amount of receiving customer after transferring is: " + (customersArray[j].getAmount() + transferAmount));
                                     } else {
